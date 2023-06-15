@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root,body{
+  font-family: 'Montserrat', sans-serif;
+  /* background-image: url('./assets/bg.jpg'); */
+  background-image: url("./assets/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  /* --primary:#80b5ff;
+  --secondary:#c0daff;
+  --tertiary: white; */
+  color: rgb(38, 40, 46);
+}
+
+.LOGO{
+  font-family: 'Montserrat Alternates', sans-serif;
+}
