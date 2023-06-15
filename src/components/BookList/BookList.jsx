@@ -4,14 +4,23 @@ import axios from "axios";
 const BookList = (value) => {
   const saveBook = (element) => {
     const payload = {
-      isbn: element.published_works[0].isbn,
-      title: element.title,
-      author: element.authors[0],
-      summary: element.summary,
-      language: element.language,
-      pageCount: element.page_count,
-      publishYear: element.copyright,
-      imageUrl: element.published_works[0].cover_art_url,
+      isbn: element.published_works[0].isbn===null?'':element.published_works[0].isbn,
+      title: element.title===null?'':element.title,
+      seriesName:element.series_name===null?'':element.series_name,
+      author: element.authors[0]===null?'':element.authors[0],
+      lexile:element.measurements.english.lexile===null?0:element.measurements.english.lexile,
+      pageCount: element.page_count===null?0:element.page_count,
+      minAge: element.min_age===null?0:element.min_age,
+      maxAge: element.max_age===null?0:element.max_age,
+      categories:element.categories===null?[]:element.categories,
+      summary: element.summary===null?'':element.summary,
+      coverArtUrl:element.published_works[0].cover_art_url===null?'':element.published_works[0].cover_art_url,
+      authorFirstName:element.author_first_names[0]===null?'':element.author_first_names[0],
+      authorLastName:element.author_last_names[0]===null?'':element.author_last_names[0],
+      copyright: element.copyright===null?0:element.copyright,
+      publishedWorkId: element.published_works[0].published_work_id===null?'':element.published_works[0].published_work_id,
+      binding: element.published_works[0].binding===null?'':element.published_works[0].binding,
+      language: element.language===null?'':element.language===null,
     };
     axios
       .post("http://localhost:8100/api/v1/admin/books/add", payload)

@@ -126,8 +126,8 @@ const AdminAddBook = () => {
   return (
     <div className="w-screen h-screen">
       <NavBar />
-      <div className="w-full flex h-3/4 p-4 px-5">
-        <div className="w-1/2 mt-5 ml-4 h-full rounded-md bg-white/30 p-8 flex flex-col">
+      <div className="w-full flex h-4/5 p-4 px-5">
+        <div className="w-1/2 mt-5 ml-4 h-fit rounded-md bg-white/30 p-10 flex flex-col">
           <div className="mb-5">
             <input
               type="text"
@@ -313,7 +313,7 @@ const AdminAddBook = () => {
             Search
           </button>
         </div>
-        <div className="w-full mt-5 h-full flex justify-center items-center">
+        <div className="w-full mt-5 max-h-full flex justify-center items-center">
           <div className="w-5/6 h-full rounded-md bg-white/30 scroll-smooth overflow-y-scroll p-3">
             {value && <BookList v={value}/>}
           </div>
