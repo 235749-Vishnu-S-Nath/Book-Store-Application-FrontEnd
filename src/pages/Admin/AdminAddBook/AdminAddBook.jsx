@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import BookList from "../../../components/BookList/BookList";
 import NavBar from "../../../components/NavBar/NavBar";
+import PopUp from "../../../components/PopUp/PopUp";
 
 const AdminAddBook = () => {
   const [options, setOptions] = React.useState({
@@ -15,7 +16,11 @@ const AdminAddBook = () => {
       "X-RapidAPI-Host": "book-finder1.p.rapidapi.com",
     },
   });
+  
+  const [onClickState,setOnClickState]=React.useState(false);
   const [value, setValue] = React.useState(null);
+  const [isOpen,setIsOpen]= React.useState(false);
+  const [message,setMessage] = React.useState('')
 
   const [checkedValue, setCheckedValue] = React.useState({
     "Animals, Bugs & Pets": false,
@@ -65,13 +70,20 @@ const AdminAddBook = () => {
   React.useEffect(() => {
     console.log(options)
     axios.request(options).then(response=>{
-      setValue(response.data.results)
+      if(response.data.total_results!=0){
+        setValue(response.data.results)
+      }
+      else{
+        setMessage('No Records Found')
+        setIsOpen(true)
+      }
     }).catch(error=>{
       console.error(error)
     })
-  }, [options]);
+  },[onClickState]);
 
   const CategoryData =() => {
+    setOnClickState(prev=>!prev)
     setOptions(prev=>{
       return{
         ...prev,
@@ -105,7 +117,7 @@ const AdminAddBook = () => {
     });
     saveInput(event);
   };
-
+  
   const saveInput = (event) => {
     const { id, value } = event.target;
     if (!value) {
@@ -122,9 +134,10 @@ const AdminAddBook = () => {
       });
     }
   };
-
+  
   return (
     <div className="w-screen h-screen">
+      {isOpen&&<PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
       <NavBar />
       <div className="w-full flex h-4/5 p-4 px-5">
         <div className="w-1/2 mt-5 ml-4 h-fit rounded-md bg-white/30 p-10 flex flex-col">
@@ -315,7 +328,7 @@ const AdminAddBook = () => {
         </div>
         <div className="w-full mt-5 max-h-full flex justify-center items-center">
           <div className="w-5/6 h-full rounded-md bg-white/30 scroll-smooth overflow-y-scroll p-3">
-            {value && <BookList v={value}/>}
+            {value && <BookList v={value} add={true} view={true} setMessage={setMessage} setIsOpen={setIsOpen}/>}
           </div>
         </div>
       </div>
