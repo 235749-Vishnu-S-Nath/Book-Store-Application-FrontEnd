@@ -8,15 +8,17 @@ import LandingPage from './pages/LandingPage/LandingPage'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import AdminAddBook from './pages/Admin/AdminAddBook/AdminAddBook'
 import { IsOpenContext } from './components/Context/IsOpenContext'
-import AdminViewBook from './pages/Admin/AdminViewBook/AdminViewBook'
+import ViewBooks from './pages/Admin/AdminViewBook/ViewBooks'
 import AdminUpdateBook from './pages/Admin/AdminUpdateBook/AdminUpdateBook'
+import UpdateBook from './pages/Admin/AdminUpdateBook/UpdateBook'
 import AdminDeleteBook from './pages/Admin/AdminDeleteBook/AdminDeleteBook'
 import ViewBook from './pages/ViewBook/ViewBook'
+import DeleteBook from './pages/Admin/AdminDeleteBook/DeleteBook'
 
 function App() {
 
   const [isOpen,setIsOpen]= React.useState(false);
-  const [message,setMessage] = React.useState('')
+  const [message,setMessage] = React.useState('');
 
   return(
     <IsOpenContext.Provider value={{isOpen,setIsOpen,message,setMessage}}>
@@ -27,11 +29,13 @@ function App() {
         <Route path='/admin'>
           <Route index element={<AdminHomePage/>} />
           <Route path='/admin/adminAdd' element={<AdminAddBook/>} />
-          <Route path='/admin/adminView' element={<AdminViewBook/>} />
+          <Route path='/admin/adminView' element={<ViewBooks/>} />
           <Route path='/admin/adminUpdate' element={<AdminUpdateBook/>} />
           <Route path='/admin/adminDelete' element={<AdminDeleteBook/>} />
+          <Route path='/admin/viewPage' element={<ViewBook />}/>
+          <Route path='/admin/update' element={<UpdateBook />}/>
+          <Route path='/admin/delete' element={<DeleteBook />}/>
         </Route>
-        <Route path='/viewPage' element={<ViewBook></ViewBook>}/>
         <Route path='/user' element={<UserHomePage />} />
         <Route path='/forgot' element={<ForgotPassword />} />
       </Routes>

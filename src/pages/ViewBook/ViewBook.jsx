@@ -14,6 +14,18 @@ const ViewBook = () => {
   
   const { payload, cancel, add, update, del, addToRL, rate } = location.state;
 
+
+  // React.useEffect(()=>{
+  //   axios.get(`http://localhost:8100/api/v1/admin/books/isbn/${payload.isbn}`).then().catch((error)=>{
+  //     console.log(error)
+  //     setMessage('Record Not Found')
+  //     setIsOpen(true)
+  //     if(isOpen===false){
+  //       window.history.back()
+  //     }
+  //   })
+  // },[])
+
   const addFunction = () => {
     axios
       .post("http://localhost:8100/api/v1/admin/books/add", payload)
@@ -24,25 +36,25 @@ const ViewBook = () => {
         }
       })
       .catch((error) => {
-        console.error(error);
+        if(error.response.status===409){
+          setMessage("Book already exists")
+          setIsOpen(true)
+        }
       });
     // navigate("/admin/adminAdd");
     window.history.back()
   };
 
   const cancelFunction = () => {
-    // navigate("/admin/adminAdd");
     window.history.back()
   };
 
   const updateFunction = () => {
-    // navigate("/admin/adminAdd");
-    window.history.back()
+    navigate("/admin/update",{state:{payload,route:'adminView'}});
   };
 
   const delFunction = () => {
-    // navigate("/admin/adminAdd");
-    window.history.back()
+    navigate("/admin/delete",{state:{payload,route:'adminView'}});
   };
 
   const addToRLFunction = () => {

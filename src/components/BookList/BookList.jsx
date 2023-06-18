@@ -1,13 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const BookList = ({v,add,view}) => {
+const BookList = ({v,add,view,update,del}) => {
 
     const navigate = useNavigate()
 
     const goToView=(element)=>{
         const payload = element
-        navigate('/viewPage',{state:{payload,cancel:true,add:false,update:true,del:true,addToRL:false,rate:false}})
+        navigate('/admin/viewPage',{state:{payload,cancel:true,add:false,update:true,del:true,addToRL:false,rate:false}})
+    }
+
+    const goToUpdate=(element)=>{
+        const payload = element
+        navigate('/admin/update',{state:{payload,route:'adminUpdate'}})
+    }
+
+    const goToDelete=(element)=>{
+        const payload = element
+        navigate('/admin/delete',{state:{payload,route:'adminDelete'}})
+    }
+
+    const saveBook=()=>{
+
     }
 
   return v.map((element, index) => {
@@ -74,6 +88,22 @@ const BookList = ({v,add,view}) => {
               className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
             >
               View
+            </button>
+          )}
+          {update && (
+            <button
+              onClick={() => goToUpdate(element)}
+              className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+            >
+              Update
+            </button>
+          )}
+          {del && (
+            <button
+              onClick={() => goToDelete(element)}
+              className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+            >
+              Delete
             </button>
           )}
           {add && (

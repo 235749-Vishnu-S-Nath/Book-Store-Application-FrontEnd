@@ -4,6 +4,7 @@ const PopUp = ({ message ,setIsOpen}) => {
 
   const closePopUp = () => {
     setIsOpen(false)
+
   };
 
   return (

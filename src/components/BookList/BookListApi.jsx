@@ -46,7 +46,7 @@ const BookListApi = ({ v, add, view}) => {
         element.published_works[0].binding === null
           ? ""
           : element.published_works[0].binding,
-      language: element.language === null ? "" : element.language === null
+      language: element.language === null ? "" : element.language
     }
   }
 
@@ -71,7 +71,7 @@ const BookListApi = ({ v, add, view}) => {
 
   const goToView=(element)=>{
     const payload = getPayload(element)
-    navigate('/viewPage',{state:{payload,cancel:true,add:true,update:false,del:false,addToRL:false,rate:false}})
+    navigate('/admin/viewPage',{state:{payload,cancel:true,add:true,update:false,del:false,addToRL:false,rate:false}})
   }
 
   return v.map((element, index) => {

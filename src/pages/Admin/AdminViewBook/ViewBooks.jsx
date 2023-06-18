@@ -5,7 +5,7 @@ import BookList from "../../../components/BookList/BookList";
 import { IsOpenContext } from "../../../components/Context/IsOpenContext";
 import PopUp from "../../../components/PopUp/PopUp";
 
-const AdminViewBook = () => {
+const ViewBooks = () => {
   const [value, setValue] = React.useState(null);
 
   const { message, isOpen, setMessage, setIsOpen } =
@@ -69,11 +69,11 @@ const AdminViewBook = () => {
           </button>
         </div>
         <div className="w-10/12 h-full overflow-y-scroll">
-          {value && <BookList v={value} add={false} view={true} />}
+          {value && <BookList v={value} add={false} view={true} update={false} del={false}/>}
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminViewBook;
+export default ViewBooks;
