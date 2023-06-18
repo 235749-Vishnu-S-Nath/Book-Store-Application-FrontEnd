@@ -1,10 +1,14 @@
 import axios from "axios";
 import React from "react";
-import BookList from "../../../components/BookList/BookList";
+import BookListApi from "../../../components/BookList/BookListApi";
+import { IsOpenContext } from "../../../components/Context/IsOpenContext";
 import NavBar from "../../../components/NavBar/NavBar";
 import PopUp from "../../../components/PopUp/PopUp";
 
 const AdminAddBook = () => {
+
+  const {isOpen,setIsOpen,message,setMessage} = React.useContext(IsOpenContext)
+
   const [options, setOptions] = React.useState({
     method: "GET",
     url: "https://book-finder1.p.rapidapi.com/api/search",
@@ -19,8 +23,6 @@ const AdminAddBook = () => {
   
   const [onClickState,setOnClickState]=React.useState(false);
   const [value, setValue] = React.useState(null);
-  const [isOpen,setIsOpen]= React.useState(false);
-  const [message,setMessage] = React.useState('')
 
   const [checkedValue, setCheckedValue] = React.useState({
     "Animals, Bugs & Pets": false,
@@ -138,7 +140,7 @@ const AdminAddBook = () => {
   return (
     <div className="w-screen h-screen">
       {isOpen&&<PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
-      <NavBar />
+      <NavBar home={true} add={false} view={true} update={true} del={true} />
       <div className="w-full flex h-4/5 p-4 px-5">
         <div className="w-1/2 mt-5 ml-4 h-fit rounded-md bg-white/30 p-10 flex flex-col">
           <div className="mb-5">
@@ -328,7 +330,7 @@ const AdminAddBook = () => {
         </div>
         <div className="w-full mt-5 max-h-full flex justify-center items-center">
           <div className="w-5/6 h-full rounded-md bg-white/30 scroll-smooth overflow-y-scroll p-3">
-            {value && <BookList v={value} add={true} view={true} setMessage={setMessage} setIsOpen={setIsOpen}/>}
+            {value && <BookListApi v={value} add={true} view={true}/>}
           </div>
         </div>
       </div>

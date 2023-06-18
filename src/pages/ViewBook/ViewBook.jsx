@@ -3,10 +3,14 @@ import NavBar from "../../components/NavBar/NavBar";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { IsOpenContext } from "../../components/Context/IsOpenContext";
+import PopUp from "../../components/PopUp/PopUp";
 
 const ViewBook = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const {isOpen,message,setIsOpen,setMessage} = React.useContext(IsOpenContext)
   
   const { payload, cancel, add, update, del, addToRL, rate } = location.state;
 
@@ -15,39 +19,46 @@ const ViewBook = () => {
       .post("http://localhost:8100/api/v1/admin/books/add", payload)
       .then((response) => {
         if (response.status === 201) {
-          console.log("Added to db");
+          setMessage("Successfully Added")
+          setIsOpen(true)
         }
       })
       .catch((error) => {
         console.error(error);
       });
-      alert("added")
-    navigate("/adminAdd");
+    // navigate("/admin/adminAdd");
+    window.history.back()
   };
 
   const cancelFunction = () => {
-    navigate("/adminAdd");
+    // navigate("/admin/adminAdd");
+    window.history.back()
   };
 
   const updateFunction = () => {
-    navigate("/adminAdd");
+    // navigate("/admin/adminAdd");
+    window.history.back()
   };
 
   const delFunction = () => {
-    navigate("/adminAdd");
+    // navigate("/admin/adminAdd");
+    window.history.back()
   };
 
   const addToRLFunction = () => {
-    navigate("/adminAdd");
+    // navigate("/admin/adminAdd");
+    window.history.back()
   };
 
   const rateFunction = () => {
-    navigate("/adminAdd");
+    // navigate("/admin/adminAdd");
+    window.history.back()
   };
 
   return (
     <div className="w-screen">
-      <NavBar />
+      {isOpen&&<PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
+      <NavBar home={true} add={true} view={false} update={true} del={true}/>
       <div className="w-full flex justify-center items-center p-10">
         <div className="backdrop-blur-md w-fit p-10 mt-7 bg-white/30 grid grid-cols-4 rounded-md">
           <div className="flex justify-start w-full col-span-1 items-center">
