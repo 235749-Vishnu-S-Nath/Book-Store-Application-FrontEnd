@@ -109,7 +109,7 @@ const DeleteBook = () => {
               <div className="w-full h-2/6 p-5 flex justify-end items-end">
                 <button
                   onClick={deleteBook}
-                  className="p-2 ml-3 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold bg-white/30 rounded-md w-2/12 hover:bg-slate-700 hover:text-white"
+                  className="p-2 mb-3 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold bg-white/30 rounded-md w-2/12 hover:bg-slate-700 hover:text-white"
                 >
                   Delete
                 </button>

@@ -20,8 +20,10 @@ function App() {
   const [isOpen,setIsOpen]= React.useState(false);
   const [message,setMessage] = React.useState('');
 
+  const [isLoading,setIsLoading] = React.useState(false);
+
   return(
-    <IsOpenContext.Provider value={{isOpen,setIsOpen,message,setMessage}}>
+    <IsOpenContext.Provider value={{isOpen,setIsOpen,message,setMessage,isLoading,setIsLoading}}>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/login' element={<LoginPage/>} />

@@ -4,10 +4,11 @@ import BookListApi from "../../../components/BookList/BookListApi";
 import { IsOpenContext } from "../../../components/Context/IsOpenContext";
 import NavBar from "../../../components/NavBar/NavBar";
 import PopUp from "../../../components/PopUp/PopUp";
+import Loading from "../../../components/Loading/Loading";
 
 const AdminAddBook = () => {
 
-  const {isOpen,setIsOpen,message,setMessage} = React.useContext(IsOpenContext)
+  const {isOpen,setIsOpen,message,setMessage,isLoading,setIsLoading} = React.useContext(IsOpenContext)
 
   const [options, setOptions] = React.useState({
     method: "GET",
@@ -71,15 +72,19 @@ const AdminAddBook = () => {
 
   React.useEffect(() => {
     console.log(options)
+    setIsLoading(true)
     axios.request(options).then(response=>{
       if(response.data.total_results!=0){
         setValue(response.data.results)
+        setIsLoading(false)
       }
       else{
+        setIsLoading(false)
         setMessage('No Records Found')
         setIsOpen(true)
       }
     }).catch(error=>{
+      setIsLoading(false)
       console.error(error)
     })
   },[onClickState]);
@@ -140,6 +145,7 @@ const AdminAddBook = () => {
   return (
     <div className="w-screen h-screen">
       {isOpen&&<PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
+      {isLoading&&<Loading/>}
       <NavBar home={true} add={false} view={true} update={true} del={true} />
       <div className="w-full flex h-4/5 p-4 px-5">
         <div className="w-1/2 mt-5 ml-4 h-fit rounded-md bg-white/30 p-10 flex flex-col">
