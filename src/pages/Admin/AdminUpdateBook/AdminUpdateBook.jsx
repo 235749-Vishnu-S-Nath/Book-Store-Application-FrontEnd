@@ -42,7 +42,7 @@ const AdminUpdateBook = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          setValue(response.data);
+          setValue(response.data.bookDtoList);
         } else {
           setMessage("No Book Found");
           setIsOpen(true);

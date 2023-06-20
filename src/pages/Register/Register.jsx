@@ -1,11 +1,15 @@
 import axios from 'axios';
 import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { IsOpenContext } from '../../components/Context/IsOpenContext';
 import MainNavBar from '../../components/NavBar/MainNavBar';
+import PopUp from "../../components/PopUp/PopUp";
 
 const Register = () => {
 
     const navigate = useNavigate()
+
+    const {message, isOpen, setMessage, setIsOpen} = React.useContext(IsOpenContext)
 
     const [checkPass,setCheckPass]=React.useState(false);
     const [formState,setFormState]=React.useState({
@@ -25,8 +29,13 @@ const Register = () => {
         })
     }
 
-    const checkPassword=()=>{
-        if(formState.rPassword===formState.rCPassword){
+    const checkPassword=(event)=>{
+        event.preventDefault()
+        if(formState.rUsername===''||formState.rEmail===''||formState.rPassword===''){
+            setMessage('Provide valid Information')
+            setIsOpen(true)
+        }
+        else if(formState.rPassword===formState.rCPassword){
             const payload = {
                 'username':formState.rUsername,
                 'email':formState.rEmail,
@@ -50,6 +59,7 @@ const Register = () => {
 
   return (
     <div className="w-screen h-screen">
+        {isOpen && <PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
         <MainNavBar login={true} register={false} home={true}/>
         <div className="w-full h-4/5 flex justify-center items-center flex-col">
         <h1 className='font-extrabold text-right text-5xl p-3 w-3/5'>Register</h1>
@@ -69,7 +79,7 @@ const Register = () => {
                 </div>
             </div>
                 <div className='flex -mt-3 w-3/5 z-10 px-12 justify-start'>
-                    <input className="rounded-md mr-5 p-3 shadow-md border-2 border-white hover:cursor-pointer shadow-black/30 px-6 hover:bg-slate-700 hover:text-white font-bold hover:scale-105 bg-white text-slate-700" type='button' onClick={checkPassword} value='Register'/>
+                    <input className="rounded-md mr-5 p-3 shadow-md border-2 border-white hover:cursor-pointer shadow-black/30 px-6 hover:bg-slate-700 hover:text-white font-bold hover:scale-105 bg-white text-slate-700" type='submit' onClick={checkPassword} value='Register'/>
                 </div>
         </div>
     </div>

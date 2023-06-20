@@ -5,7 +5,7 @@ const MainNavBar = ({login,register,home}) => {
     const navigate = useNavigate()
   return (
     <div className='w-full flex py-2 backdrop-blur-lg rounded-md'>
-        <div className="logo w-8/12 flex items-center">
+        <div className="logo w-8/12 flex items-center cursor-default">
             <div className="p-2 px-4 pl-10">
                 <h1 className='text-slate-700 text-6xl font-extrabold LOGO'>ReadEasy</h1>
             </div>

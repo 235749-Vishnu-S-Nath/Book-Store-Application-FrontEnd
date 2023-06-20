@@ -33,11 +33,15 @@ function LoginPage() {
       .then((response) => {
         if (response.status === 200) {
           setUserState(response.data.role);
+          localStorage.setItem("username", response.data.username);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("isActive", true);
+          localStorage.setItem("role", response.data.role);
         }
       })
-      .catch(()=>{
-        setMessage("Invalid Login Credentials")
-        setIsOpen(true)
+      .catch(() => {
+        setMessage("Invalid Login Credentials");
+        setIsOpen(true);
       });
   };
 
@@ -45,8 +49,22 @@ function LoginPage() {
     userState === "ADMIN" ? navigation("/admin") : navigation("/user");
   };
 
+  const checkLogin = () => {
+    const isActive = localStorage.getItem("isActive");
+    const role = localStorage.getItem("role");
+    if (isActive && role) {
+      setUserState(role);
+    }
+  };
+
+  React.useEffect(() => {
+    checkLogin();
+    console.log(userState);
+  }, []);
+
   return (
     <div className="w-screen h-screen">
+      {userState && reroute()}
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
       <MainNavBar login={false} register={true} home={true} />
       <div className="w-full h-3/4 flex justify-center items-center flex-col">
@@ -96,7 +114,6 @@ function LoginPage() {
               onClick={onClickLogin}
               value="Login"
             />
-            {userState && reroute()}
           </div>
         </div>
       </div>
