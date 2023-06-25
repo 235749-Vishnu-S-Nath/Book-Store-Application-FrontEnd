@@ -27,32 +27,26 @@ const UserNavBar = ({ home, readList, ratings }) => {
             ReadEasy
           </h1>
         </div>
-        <div className="ml-10">
+        <div className="pl-10">
           {home && (
-            <Link className="mx-3 hover:font-bold" to="/admin">
+            <Link className="ml-5 hover:font-bold" to="/user">
               Home
             </Link>
           )}
           {readList && (
-            <Link className="mx-3 hover:font-bold" to="/admin/adminAdd">
+            <Link className="ml-5 hover:font-bold" to="">
               ReadList
             </Link>
           )}
           {ratings && (
-            <Link className="mx-3 hover:font-bold" to="/admin/adminView">
+            <Link className="ml-5 hover:font-bold" to="">
               Your Ratings
             </Link>
           )}
         </div>
       </div>
-      <div className="nav flex justify-end px-16 items-center w-4/12">
-        {/* <div
-          className="backdrop-blur-sm text-slate-700 hover:cursor-pointer font-bold bg-white/30 rounded-md p-2 w-6/12 hover:bg-slate-700 hover:text-white"
-          onClick={logout}
-        >
-          <h3 className="text-center hover:cursor-pointer">Log-out</h3>
-        </div> */}
-        <Menu as="div" className="relative inline-block text-left">
+      <div className="nav flex justify-end pr-16 items-center w-4/12">
+        <Menu as="div" className="relative text-left">
           <div>
             <Menu.Button className="px-5 py-2 inline-flex backdrop-blur-sm w-full text-slate-700 hover:cursor-pointer font-bold bg-white/30 rounded-md hover:bg-slate-700 hover:text-white">
               <svg
@@ -71,7 +65,7 @@ const UserNavBar = ({ home, readList, ratings }) => {
               </svg>
 
               <ChevronDownIcon
-                className="-mr-1 ml-3 h-5 w-5 text-gray-400"
+                className="ml-2 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
             </Menu.Button>
@@ -86,7 +80,7 @@ const UserNavBar = ({ home, readList, ratings }) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-0 z-50 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (

@@ -14,6 +14,7 @@ import UpdateBook from './pages/Admin/AdminUpdateBook/UpdateBook'
 import AdminDeleteBook from './pages/Admin/AdminDeleteBook/AdminDeleteBook'
 import ViewBook from './pages/ViewBook/ViewBook'
 import DeleteBook from './pages/Admin/AdminDeleteBook/DeleteBook'
+import ViewBookDetails from './pages/User/ViewBookDetails/ViewBookDetails'
 
 function App() {
 
@@ -38,7 +39,10 @@ function App() {
           <Route path='/admin/update' element={<UpdateBook />}/>
           <Route path='/admin/delete' element={<DeleteBook />}/>
         </Route>
-        <Route path='/user' element={<UserHomePage />} />
+        <Route path='/user'>
+          <Route index element={<UserHomePage />} />
+          <Route path='/user/viewPage' element={<ViewBookDetails />}/>
+        </Route>
         <Route path='/forgot' element={<ForgotPassword />} />
       </Routes>
     </IsOpenContext.Provider>

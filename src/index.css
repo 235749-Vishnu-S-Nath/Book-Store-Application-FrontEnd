@@ -5,18 +5,33 @@
 @tailwind components;
 @tailwind utilities;
 
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(74, 61, 48, 0.347);
+  border-radius: 5px;
+}
+
+
 #root,body{
   font-family: 'Montserrat', sans-serif;
-  /* background-image: url('./assets/bg.jpg'); */
   background-image: url("./assets/bg2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
   padding: 0;
-  /* --primary:#80b5ff;
-  --secondary:#c0daff;
-  --tertiary: white; */
   color: rgb(38, 40, 46);
+}
+
+.content-scroll::-webkit-scrollbar{
+  width: 0;
 }
 
 .LOGO{

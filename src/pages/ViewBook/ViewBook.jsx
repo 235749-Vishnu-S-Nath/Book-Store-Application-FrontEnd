@@ -15,20 +15,9 @@ const ViewBook = () => {
   const { payload, cancel, add, update, del, addToRL, rate } = location.state;
 
 
-  // React.useEffect(()=>{
-  //   axios.get(`http://localhost:8100/api/v1/admin/books/isbn/${payload.isbn}`).then().catch((error)=>{
-  //     console.log(error)
-  //     setMessage('Record Not Found')
-  //     setIsOpen(true)
-  //     if(isOpen===false){
-  //       window.history.back()
-  //     }
-  //   })
-  // },[])
-
   const addFunction = () => {
     axios
-      .post("http://localhost:8100/api/v1/admin/books/add", payload)
+      .post("http://localhost:9090/api/v1/books/admin/add", payload)
       .then((response) => {
         if (response.status === 201) {
           setMessage("Successfully Added")
@@ -76,8 +65,8 @@ const ViewBook = () => {
           <div className="flex justify-start w-full col-span-1 items-center">
             <img src={payload.coverArtUrl} className="h-96 max-h-96" />
           </div>
-          <div className="p-10 col-span-3 pb-1 w-full bg-white/70">
-            <div className="h-5/6 overflow-hidden">
+          <div className="p-10 col-span-3 pb-1 max-h-full min-h-full w-full bg-white/70">
+            <div className="h-5/6 overflow-y-scroll content-scroll">
               <h1 className="text-2xl mb-6 font-extrabold">{payload.title}</h1>
               {payload.seriesName && (
                 <h3 className="font-bold">

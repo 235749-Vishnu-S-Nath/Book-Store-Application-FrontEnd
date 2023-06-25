@@ -18,7 +18,7 @@ const DeleteBook = () => {
 
   const deleteBook = () => {
     axios
-      .delete(`http://localhost:8100/api/v1/admin/books/${payload.isbn}`)
+      .delete(`http://localhost:9090/api/v1/books/admin/${payload.isbn}`)
       .then((response) => {
         if (response.status === 200) {
           setMessage("Book Deleted Successfully");

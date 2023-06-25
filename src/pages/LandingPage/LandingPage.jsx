@@ -3,7 +3,6 @@ import MainNavBar from '../../components/NavBar/MainNavBar'
 
 const LandingPage = () => {
   return (
-    // <div className='w-8/12 h-4/6 rounded-lg backdrop-blur-md bg-white/30'>
     <div className='w-full h-full'>
         <MainNavBar login={true} register={true} home={false}/>
         <div className='w-full flex justify-center mt-20'>
@@ -27,21 +26,10 @@ const LandingPage = () => {
                   <li>Express your thoughts by rating the books</li>
                 </ul>
               </section>
-
-              {/* <section className='rounded-md bg-white/10 p-5'>
-                <h3 className='text-3xl py-3'>Categories</h3>
-                <ul className='p-3'>
-                  <li>Fiction</li>
-                  <li>History</li>
-                  <li>Science</li>
-                  <li>Romance</li>
-                  <li>And more ...</li>
-                </ul>
-              </section> */}
             </div>
           </div>
         </div>
-        <footer className='h-12 bg-white/30 mt-28 flex items-center p-2 px-5 w-full'>
+        <footer className='h-12 bg-white/30 absolute bottom-0 flex items-center p-2 px-5 w-full'>
           <p>Contact us at <a href="mailto:vishnusnath447@gmail.com">info@example.com</a></p>
         </footer>
     </div>

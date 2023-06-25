@@ -48,7 +48,7 @@ const UpdateBook = () => {
       maxAge:maxAge
     }
 
-    axios.put(`http://localhost:8100/api/v1/admin/books/${payload.isbn}`,updatePayload).then(response=>{
+    axios.put(`http://localhost:9090/api/v1/books/admin/${payload.isbn}`,updatePayload).then(response=>{
       if(response.status===200){
         console.log(response.data)
         setMessage("Successfully Updated")

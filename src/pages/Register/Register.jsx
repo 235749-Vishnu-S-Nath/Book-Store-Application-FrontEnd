@@ -42,7 +42,7 @@ const Register = () => {
                 'password':formState.rPassword
             }
 
-            axios.post("http://localhost:8000/api/v1/users/register",payload).then(response=>{
+            axios.post("http://localhost:9090/api/v1/users/register",payload).then(response=>{
                 if(response.status===201){
                     setCheckPass(false)
                     navigate('/login')

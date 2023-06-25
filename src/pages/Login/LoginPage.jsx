@@ -4,9 +4,10 @@ import axios from "axios";
 import MainNavBar from "../../components/NavBar/MainNavBar";
 import { IsOpenContext } from "../../components/Context/IsOpenContext";
 import PopUp from "../../components/PopUp/PopUp";
+import Loading from "../../components/Loading/Loading";
 
 function LoginPage() {
-  const { message, isOpen, setMessage, setIsOpen } =
+  const { message, isOpen, setMessage, setIsOpen ,isLoading,setIsLoading} =
     React.useContext(IsOpenContext);
 
   const navigation = useNavigate();
@@ -28,9 +29,11 @@ function LoginPage() {
 
   const onClickLogin = () => {
     console.log(loginState);
+    setIsLoading(true)
     axios
-      .post("http://localhost:8000/api/v1/users/login", loginState)
+      .post("http://localhost:9090/api/v1/users/login", loginState)
       .then((response) => {
+        setIsLoading(false)
         if (response.status === 200) {
           setUserState(response.data.role);
           localStorage.setItem("username", response.data.username);
@@ -39,9 +42,13 @@ function LoginPage() {
           localStorage.setItem("role", response.data.role);
         }
       })
-      .catch(() => {
-        setMessage("Invalid Login Credentials");
+      .catch((error) => {
+        setIsLoading(false)
+        setMessage("Server Error");
         setIsOpen(true);
+        if(error.response.status===404){
+          setMessage("Invalid Credentials");
+        }
       });
   };
 
@@ -66,6 +73,7 @@ function LoginPage() {
     <div className="w-screen h-screen">
       {userState && reroute()}
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
+      {isLoading&&<Loading />}
       <MainNavBar login={false} register={true} home={true} />
       <div className="w-full h-3/4 flex justify-center items-center flex-col">
         <h1 className="font-extrabold text-5xl p-3 w-3/5">Login</h1>

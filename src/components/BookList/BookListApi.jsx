@@ -46,7 +46,8 @@ const BookListApi = ({ v, add, view}) => {
         element.published_works[0].binding === null
           ? ""
           : element.published_works[0].binding,
-      language: element.language === null ? "" : element.language
+      language: element.language === null ? "" : element.language,
+      rating:0
     }
   }
 
@@ -54,7 +55,7 @@ const BookListApi = ({ v, add, view}) => {
   const saveBook = (element) => {
     const payload = getPayload(element)
     axios
-      .post("http://localhost:8100/api/v1/admin/books/add", payload)
+      .post("http://localhost:9090/api/v1/books/admin/add", payload)
       .then((response) => {
         if (response.status === 201) {
           setMessage("Added Successfully")
@@ -106,20 +107,6 @@ const BookListApi = ({ v, add, view}) => {
               onClick={() => saveBook(element)}
               className="w-1/2 p-2 m2 mx-2 border-2 border-slate-700 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-4 h-4 mr-2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                />
-              </svg>
               Add
             </button>
           )}

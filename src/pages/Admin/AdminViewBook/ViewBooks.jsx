@@ -15,7 +15,7 @@ const ViewBooks = () => {
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:8100/api/v1/admin/books")
+      .get("http://localhost:9090/api/v1/books/admin")
       .then((response) => {
         console.log(response.data)
         if (response.data!='') {
@@ -38,7 +38,7 @@ const ViewBooks = () => {
   const getData = () => {
     axios
       .get(
-        `http://localhost:8100/api/v1/users/books/title?title=${searchValue}`
+        `http://localhost:9090/api/v1/books/users/title?title=${searchValue}`
       )
       .then((response) => {
         if (response.status === 200) {
