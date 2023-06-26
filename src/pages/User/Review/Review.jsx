@@ -1,14 +1,8 @@
 import axios from "axios";
 import React from "react";
-import { IsOpenContext } from "../../../components/Context/IsOpenContext";
-import { useNavigate } from "react-router-dom";
 
 const Review = ({ isbn, rev }) => {
   const [reviews, setReviews] = React.useState(null);
-  const { message, isOpen, setMessage, setIsOpen, isLoading, setIsLoading } =
-    React.useContext(IsOpenContext);
-  const navigate = useNavigate();
-
   React.useEffect(() => {
     axios
       .get(`http://localhost:9090/api/v1/rating/reviews?isbn=${isbn}`)
@@ -23,31 +17,9 @@ const Review = ({ isbn, rev }) => {
         console.log(error);
       });
   }, []);
-
-  const addToReadList = () => {
-    const payload = {
-      username: localStorage.getItem("username"),
-      isbn: isbn,
-    };
-    axios
-      .post("http://localhost:9090/api/v1/readlist/addtofav", payload)
-      .then((response) => {
-        if (response.status === 201) {
-          console.log(response.data);
-          setMessage("Added Successfully");
-          setIsOpen(true);
-        } else {
-          setMessage("Already added to WishList");
-          setIsOpen(true);
-        }
-      })//          not DOnE
-      .catch();
-    navigate("/user");
-  };
-
   return (
     <div className="w-full h-full  flex flex-col justify-evenly">
-      <div className="h-4/5 max-h-96 object-contain overflow-y-scroll w-full">
+      <div className="h-4/5 max-h-80 object-contain overflow-y-scroll w-full">
         {reviews === null ? <div>No Reviews Yet</div> : null}
         {reviews &&
           reviews.map((element, index) => {
@@ -76,9 +48,9 @@ const Review = ({ isbn, rev }) => {
             );
           })}
       </div>
-      <div className="w-full flex justify-between px-5 items-center">
+      <div className="w-full flex justify-end px-5 items-center">
         <button
-          className="flex justify-center items-center"
+          className="flex justify-center bg-white/30 bg-blend-multiply py-1 px-3 rounded-lg font-black items-center"
           onClick={() => rev(false)}
         >
           <svg
@@ -87,7 +59,7 @@ const Review = ({ isbn, rev }) => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6 mr-3 text-slate-600"
+            className="w-6 h-6 mr-3 text-slate-950 "
           >
             <path
               strokeLinecap="round"
@@ -97,29 +69,8 @@ const Review = ({ isbn, rev }) => {
           </svg>
           Back to Summary
         </button>
-        <button
-          onClick={addToReadList}
-          className="p-2 px-3 border-2 border-red-600 text-white hover:text-red-600 bg-red-600 font-extrabold hover:bg-white rounded-md flex justify-center items-center"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-4 h-4 mr-2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-            />
-          </svg>
-          Add
-        </button>
       </div>
     </div>
   );
 };
-
 export default Review;
