@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { IsOpenContext } from "../Context/IsOpenContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -10,9 +11,12 @@ function classNames(...classes) {
 
 const UserNavBar = ({ home, readList, ratings }) => {
   const navigate = useNavigate();
+  const {setMessage,setIsOpen} = React.useContext(IsOpenContext);
 
   const logout = () => {
     localStorage.clear();
+    setMessage("Logged Out")
+    setIsOpen(true)
     navigate("/login");
   };
 
@@ -29,17 +33,17 @@ const UserNavBar = ({ home, readList, ratings }) => {
         </div>
         <div className="pl-10">
           {home && (
-            <Link className="ml-5 hover:font-bold" to="/user">
+            <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user">
               Home
             </Link>
           )}
           {readList && (
-            <Link className="ml-5 hover:font-bold" to="/user/readList">
+            <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user/readList">
               ReadList
             </Link>
           )}
           {ratings && (
-            <Link className="ml-5 hover:font-bold" to="/user/rating">
+            <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user/rating">
               Your Ratings
             </Link>
           )}

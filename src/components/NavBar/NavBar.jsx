@@ -1,11 +1,15 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { IsOpenContext } from "../Context/IsOpenContext";
 
 const NavBar = ({home,add,view,update,del}) => {
   const navigate = useNavigate();
+  const {setMessage,setIsOpen} = React.useContext(IsOpenContext)
 
   const logout=()=>{
     localStorage.clear();
+    setMessage("Logged Out")
+    setIsOpen(true)
     navigate("/login")
   }
 
@@ -18,11 +22,11 @@ const NavBar = ({home,add,view,update,del}) => {
           </h1>
         </div>
         <div className="ml-10">
-          {home&&<Link className="mx-3 hover:font-bold" to="/admin">Home</Link>}
-          {add&&<Link className="mx-3 hover:font-bold" to="/admin/adminAdd">Add</Link>}
-          {view&&<Link className="mx-3 hover:font-bold" to="/admin/adminView">View</Link>}
-          {update&&<Link className="mx-3 hover:font-bold" to="/admin/adminUpdate">Update</Link>}
-          {del&&<Link className="mx-3 hover:font-bold" to="/admin/adminDelete">Delete</Link>}
+          {home&&<Link className="mx-3 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/admin">Home</Link>}
+          {add&&<Link className="mx-3 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/admin/adminAdd">Add</Link>}
+          {view&&<Link className="mx-3 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/admin/adminView">View</Link>}
+          {update&&<Link className="mx-3 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/admin/adminUpdate">Update</Link>}
+          {del&&<Link className="mx-3 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/admin/adminDelete">Delete</Link>}
         </div>
       </div>
       <div className="nav flex justify-end px-16 items-center w-4/12">

@@ -32,6 +32,7 @@ const ReadList = () => {
         if (error.response.status === 404) {
           setMessage("No Book Added to Collection");
           setIsOpen(true);
+          navigate("/user")
         } else {
           setMessage("Server Error");
           setIsOpen(true);

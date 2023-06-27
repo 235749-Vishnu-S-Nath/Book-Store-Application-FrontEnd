@@ -45,6 +45,8 @@ const Register = () => {
             axios.post("http://localhost:9090/api/v1/users/register",payload).then(response=>{
                 if(response.status===201){
                     setCheckPass(false)
+                    setMessage("Successfully Registered")
+                    setIsOpen(true)
                     navigate('/login')
                 }
                 else{

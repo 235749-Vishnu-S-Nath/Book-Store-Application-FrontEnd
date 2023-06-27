@@ -83,6 +83,7 @@ const ViewBookDetails = () => {
       )
       .then((response) => {
         if (response.status === 200) {
+          console.log('rated')
           setRating(response.data.rating);
           setRated(true);
         }

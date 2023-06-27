@@ -38,12 +38,13 @@ const ViewBooks = () => {
   const getData = () => {
     axios
       .get(
-        `http://localhost:9090/api/v1/books/users/title?title=${searchValue}`
+        `http://localhost:9090/api/v1/books/user/title?title=${searchValue}`
       )
       .then((response) => {
         if (response.status === 200) {
           setValue(response.data.bookDtoList);
-        } else {
+        }
+        else{
           setMessage("No Book Found");
           setIsOpen(true);
         }
