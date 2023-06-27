@@ -1,0 +1,11 @@
+.starRating > button {
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 15px;
+  padding: 0;
+}
+.starRating > button.active {
+  color: #fff200;
+}

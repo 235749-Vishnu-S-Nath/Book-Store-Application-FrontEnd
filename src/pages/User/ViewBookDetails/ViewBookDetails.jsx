@@ -27,31 +27,8 @@ const ViewBookDetails = () => {
   const [isReview, setIsReview] = React.useState(false);
   const [rated, setRated] = React.useState(false);
   const [rating, setRating] = React.useState(0);
-  const addToReadList = () => {
-    const payload = {
-      username: localStorage.getItem("username"),
-      isbn: isbn,
-    };
-    axios
-      .post("http://localhost:9090/api/v1/readlist/addtofav", payload)
-      .then((response) => {
-        if (response.status === 201) {
-          console.log(response.data);
-          setMessage("Added Successfully");
-          setIsOpen(true);
-        }
-      })
-      .catch((error) => {
-        if (error.response.status === 409) {
-          setMessage("Already added to WishList");
-          setIsOpen(true);
-        } else {
-          setMessage("Server Error.");
-          setIsOpen(true);
-        }
-      });
-    navigate("/user");
-  };
+  const [update, setUpdate] = React.useState(false);
+
   React.useEffect(() => {
     setIsLoading(true);
     axios
@@ -95,11 +72,42 @@ const ViewBookDetails = () => {
       });
   }, []);
 
+
+  const addToReadList = () => {
+    const payload = {
+      username: localStorage.getItem("username"),
+      isbn: isbn,
+    };
+    axios
+      .post("http://localhost:9090/api/v1/readlist/addtofav", payload)
+      .then((response) => {
+        if (response.status === 201) {
+          setMessage("Added Successfully");
+          setIsOpen(true);
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          setMessage("Already added to WishList");
+          setIsOpen(true);
+        } else {
+          setMessage("Server Error.");
+          setIsOpen(true);
+        }
+      });
+    navigate("/user");
+  };
+  
+  const goToRating = (temp)=>{
+      setUpdate(temp)
+      setIsRatingOpen(true)
+  }
+
   return (
     <div className="w-screen h-screen">
       {isLoading && <Loading />}
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen} />}
-      {isRatingOpen && <ProvideRating setIsRatingOpen={setIsRatingOpen} />}
+      {isRatingOpen && <ProvideRating setIsRatingOpen={setIsRatingOpen} book={book} update={update} />}
       <UserNavBar home={true} readList={true} ratings={true} />
       {book && (
         <div className="w-full h-5/6 mt-3 p-5">
@@ -126,7 +134,7 @@ const ViewBookDetails = () => {
                 {book.categories && (
                   <h1>
                     Categories:{" "}
-                    <span className="text-base font-medium">
+                    <span className="text-sm font-medium">
                       {book.categories}
                     </span>
                   </h1>
@@ -203,7 +211,7 @@ const ViewBookDetails = () => {
               )}
               {rate &&
                 (rated === true ? (
-                  <h1 className="text-lg font-bold bg-slate-800/50 text-white rounded-lg mt-5 flex justify-center items-center">
+                  <h1 className="text-lg font-bold bg-slate-800 p-2 text-white rounded-lg mt-5 flex justify-center items-center">
                     Book already rated with:{" "}
                     <span>
                       <svg
@@ -216,7 +224,7 @@ const ViewBookDetails = () => {
                     </span>{" "}
                     {rating}
                     <span
-                      onClick={() => setIsRatingOpen(true)}
+                      onClick={()=>goToRating(true)}
                       className="hover:cursor-pointer ml-16"
                     >
                       Update?
@@ -224,7 +232,7 @@ const ViewBookDetails = () => {
                   </h1>
                 ) : (
                   <button
-                    onClick={() => setIsRatingOpen(true)}
+                    onClick={()=>goToRating(false)}
                     className="p-2 px-3 border-2 border-slate-600 text-white hover:text-slate-600 bg-slate-600 font-extrabold hover:bg-white rounded-md flex justify-center items-center"
                   >
                     Provide Rating

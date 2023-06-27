@@ -52,6 +52,15 @@ const Register = () => {
                 else{
                     setCheckPass(true)
                 }
+            }).catch(error=>{
+                if(error.response.status===409){
+                    setMessage("User already exist")
+                    setIsOpen(true)
+                }
+                else{
+                    setMessage("Server Error")
+                    setIsOpen(true) 
+                }
             })
         }
         else{

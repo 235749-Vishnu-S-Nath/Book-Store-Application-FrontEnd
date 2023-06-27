@@ -42,11 +42,11 @@ const UserNavBar = ({ home, readList, ratings }) => {
               ReadList
             </Link>
           )}
-          {ratings && (
+          {/* {ratings && (
             <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user/rating">
               Your Ratings
             </Link>
-          )}
+          )} */}
         </div>
       </div>
       <div className="nav flex justify-end pr-16 items-center w-4/12">
