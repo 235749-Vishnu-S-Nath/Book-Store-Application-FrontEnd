@@ -364,7 +364,7 @@ const UserHomePage = () => {
             {values.map((element, index) => {
               return (
                 <div
-                  onClick={()=>navigate('/user/viewPage',{state:{isbn:element.isbn}})}
+                  onClick={()=>navigate('/user/viewPage',{state:{isbn:element.isbn,rate:false}})}
                   key={index}
                   className="w-full h-64 p-5 bg-white/30 rounded-md group parent hover:scale-110 ease-in-out duration-100 hover:cursor-pointer"
                 >

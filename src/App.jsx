@@ -15,16 +15,19 @@ import AdminDeleteBook from './pages/Admin/AdminDeleteBook/AdminDeleteBook'
 import ViewBook from './pages/ViewBook/ViewBook'
 import DeleteBook from './pages/Admin/AdminDeleteBook/DeleteBook'
 import ViewBookDetails from './pages/User/ViewBookDetails/ViewBookDetails'
+import ReadList from './pages/User/ReadList/ReadList'
+import Rating from './pages/User/Rating/Rating'
 
 function App() {
 
   const [isOpen,setIsOpen]= React.useState(false);
+  const [isRatingOpen,setIsRatingOpen]= React.useState(false);
   const [message,setMessage] = React.useState('');
 
   const [isLoading,setIsLoading] = React.useState(false);
 
   return(
-    <IsOpenContext.Provider value={{isOpen,setIsOpen,message,setMessage,isLoading,setIsLoading}}>
+    <IsOpenContext.Provider value={{isOpen,setIsOpen,message,setMessage,isLoading,setIsLoading,isRatingOpen,setIsRatingOpen}}>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/login' element={<LoginPage/>} />
@@ -42,6 +45,8 @@ function App() {
         <Route path='/user'>
           <Route index element={<UserHomePage />} />
           <Route path='/user/viewPage' element={<ViewBookDetails />}/>
+          <Route path='/user/readList' element={<ReadList />}/>
+          <Route path='/user/rating' element={<Rating />}/>
         </Route>
         <Route path='/forgot' element={<ForgotPassword />} />
       </Routes>

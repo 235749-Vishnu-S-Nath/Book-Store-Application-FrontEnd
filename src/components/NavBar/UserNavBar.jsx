@@ -34,12 +34,12 @@ const UserNavBar = ({ home, readList, ratings }) => {
             </Link>
           )}
           {readList && (
-            <Link className="ml-5 hover:font-bold" to="">
+            <Link className="ml-5 hover:font-bold" to="/user/readList">
               ReadList
             </Link>
           )}
           {ratings && (
-            <Link className="ml-5 hover:font-bold" to="">
+            <Link className="ml-5 hover:font-bold" to="/user/rating">
               Your Ratings
             </Link>
           )}

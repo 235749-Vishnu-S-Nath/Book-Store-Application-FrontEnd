@@ -7,14 +7,26 @@ import Loading from "../../../components/Loading/Loading";
 import PopUp from "../../../components/PopUp/PopUp";
 import Review from "../Review/Review";
 import { useNavigate } from "react-router-dom";
+import ProvideRating from "../../../components/ProvideRating/ProvideRating";
+
 const ViewBookDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isbn } = location.state;
+  const { isbn, rate } = location.state;
   const [book, setBook] = React.useState(null);
-  const { message, isOpen, setMessage, setIsOpen, isLoading, setIsLoading } =
-    React.useContext(IsOpenContext);
+  const {
+    message,
+    isOpen,
+    setMessage,
+    setIsOpen,
+    isLoading,
+    setIsLoading,
+    isRatingOpen,
+    setIsRatingOpen,
+  } = React.useContext(IsOpenContext);
   const [isReview, setIsReview] = React.useState(false);
+  const [rated, setRated] = React.useState(false);
+  const [rating, setRating] = React.useState(0);
   const addToReadList = () => {
     const payload = {
       username: localStorage.getItem("username"),
@@ -61,10 +73,32 @@ const ViewBookDetails = () => {
         }
       });
   }, []);
+
+  React.useEffect(() => {
+    axios
+      .get(
+        `http://localhost:9090/api/v1/rating?isbn=${isbn}&username=${localStorage.getItem(
+          "username"
+        )}`
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setRating(response.data.rating);
+          setRated(true);
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setRated(false);
+        }
+      });
+  }, []);
+
   return (
     <div className="w-screen h-screen">
       {isLoading && <Loading />}
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen} />}
+      {isRatingOpen && <ProvideRating setIsRatingOpen={setIsRatingOpen} />}
       <UserNavBar home={true} readList={true} ratings={true} />
       {book && (
         <div className="w-full h-5/6 mt-3 p-5">
@@ -117,12 +151,14 @@ const ViewBookDetails = () => {
                     <span className="text-base font-medium">
                       {Math.round(book.rating * 10) / 10}
                     </span>
-                    <span
-                      onClick={() => setIsReview(true)}
-                      className="text-sm font-medium ml-5 hover:cursor-pointer"
-                    >
-                      View Review
-                    </span>
+                    {!rate && (
+                      <span
+                        onClick={() => setIsReview(true)}
+                        className="text-sm font-medium ml-5 hover:cursor-pointer"
+                      >
+                        View Review
+                      </span>
+                    )}
                   </h1>
                 ) : (
                   <span className="text-base font-medium">Not rated yet.</span>
@@ -136,30 +172,63 @@ const ViewBookDetails = () => {
               <div className="h-4/5 w-full mb-2 overflow-y-scroll">
                 {isReview ? (
                   <Review isbn={book.isbn} rev={setIsReview} />
+                ) : book.summary != "" ? (
+                  <div className="h-4/5 max-h-80">{book.summary}</div>
                 ) : (
-                  book.summary!=''?<div className="h-4/5 max-h-80">{book.summary}</div>:<h1>No Summary</h1>
+                  <h1>No Summary</h1>
                 )}
               </div>
-              <button
-                onClick={addToReadList}
-                className="p-2 px-3 border-2 border-red-600 text-white hover:text-red-600 bg-red-600 font-extrabold hover:bg-white rounded-md flex justify-center items-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4 mr-2"
+              {!rate && (
+                <button
+                  onClick={addToReadList}
+                  className="p-2 px-3 border-2 border-red-600 text-white hover:text-red-600 bg-red-600 font-extrabold hover:bg-white rounded-md flex justify-center items-center"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                  />
-                </svg>
-                Add
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                    />
+                  </svg>
+                  Add
+                </button>
+              )}
+              {rate &&
+                (rated === true ? (
+                  <h1 className="text-lg font-bold bg-slate-800/50 text-white rounded-lg mt-5 flex justify-center items-center">
+                    Book already rated with:{" "}
+                    <span>
+                      <svg
+                        className="text-yellow-500 w-5 h-auto ml-3 mr-1 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 576 512"
+                      >
+                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z" />
+                      </svg>
+                    </span>{" "}
+                    {rating}
+                    <span
+                      onClick={() => setIsRatingOpen(true)}
+                      className="hover:cursor-pointer ml-16"
+                    >
+                      Update?
+                    </span>
+                  </h1>
+                ) : (
+                  <button
+                    onClick={() => setIsRatingOpen(true)}
+                    className="p-2 px-3 border-2 border-slate-600 text-white hover:text-slate-600 bg-slate-600 font-extrabold hover:bg-white rounded-md flex justify-center items-center"
+                  >
+                    Provide Rating
+                  </button>
+                ))}
             </div>
           </div>
         </div>
