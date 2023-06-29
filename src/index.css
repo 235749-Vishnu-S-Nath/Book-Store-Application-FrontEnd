@@ -15,19 +15,20 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(74, 61, 48, 0.347);
+  background-color: white;
   border-radius: 5px;
 }
 
 
 #root,body{
   font-family: 'Montserrat', sans-serif;
-  background-image: url("./assets/bg2.jpg");
-  background-repeat: no-repeat;
+  background-image: url("./assets/bg3.svg");
+  background-repeat: repeat-y;
   background-size: cover;
   margin: 0;
   padding: 0;
-  color: rgb(38, 40, 46);
+  /* color: rgb(38, 40, 46); */
+  color: rgb(255, 255, 255);
 }
 
 .content-scroll::-webkit-scrollbar{
@@ -36,4 +37,6 @@
 
 .LOGO{
   font-family: 'Montserrat Alternates', sans-serif;
+  color: rgb(208, 218, 236);
 }
+

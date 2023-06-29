@@ -63,28 +63,28 @@ const UpdateBook = () => {
   }
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen">
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen} />}
       <NavBar home={true} add={true} view={true} update={false} del={true} />
       <div className="w-full flex justify-center items-center p-10">
-        <div className="backdrop-blur-md bg-white/30 p-10 w-11/12 rounded-md grid grid-cols-4 gap-5">
+        <div className="backdrop-blur-md w-fit p-10 mt-7 bg-white/10 grid grid-cols-4 rounded-md">
           <div className="col-span-1">
             <img src={payload.coverArtUrl} className="h-96 max-h-96" />
           </div>
           <div className="col-span-3">
-            <div className="w-full p-5 bg-white/50 h-full">
+            <div className="w-full p-5 bg-white/10 h-full">
               <h1 className="text-2xl mb-2 font-extrabold">{payload.title}</h1>
               <div className="flex w-full justify-evenly items-center flex-col h-3/4">
-                <input className="w-11/12 p-2" type="text" onChange={changeSeries} placeholder="Update Series" />
-                <input className="w-11/12 p-2" type="text" onChange={changeAuthor} placeholder="Update Author"/>
-                <input className="w-11/12 p-2" type="text" onChange={changeSummary} placeholder="Update Summary"/>
-                <input className="w-11/12 p-2" type="text" onChange={changeMinAge} placeholder="Update Min Age"/>
-                <input className="w-11/12 p-2" type="text" onChange={changeMaxAge} placeholder="Update Max Age"/>
+                <input className="w-11/12 p-2 rounded-md my-1 text-slate-800" type="text" onChange={changeSeries} placeholder="Update Series" />
+                <input className="w-11/12 p-2 rounded-md my-1 text-slate-800" type="text" onChange={changeAuthor} placeholder="Update Author"/>
+                <input className="w-11/12 p-2 rounded-md my-1 text-slate-800" type="text" onChange={changeSummary} placeholder="Update Summary"/>
+                <input className="w-11/12 p-2 rounded-md my-1 text-slate-800" type="text" onChange={changeMinAge} placeholder="Update Min Age"/>
+                <input className="w-11/12 p-2 rounded-md my-1 text-slate-800" type="text" onChange={changeMaxAge} placeholder="Update Max Age"/>
               </div>
-              <div className="w-full h-1/6 mt-2 p-5 flex justify-end items-end">
+              <div className="w-full h-1/6 mt-2 p-5 px-8 flex justify-end items-end">
                 <button
                   onClick={updateBook}
-                  className="p-2 mb-3 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold bg-white/30 rounded-md w-2/12 hover:bg-slate-700 hover:text-white"
+                  className="p-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold bg-white/10 rounded-md w-2/12 hover:bg-white hover:text-blue-900 hover:scale-110 ease-in-out duration-300"
                 >
                   Update
                 </button>

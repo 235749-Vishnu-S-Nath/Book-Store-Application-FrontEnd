@@ -143,24 +143,24 @@ const UserHomePage = () => {
 
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen overflow-hidden">
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
       {isLoading&&<Loading/>}
       <UserNavBar home={false} readList={true} ratings={true} />
       <div className="w-full flex justify-evenly items-center px-20">
         <div className="w-5/12 py-2">
-          <input onChange={searchChange} className="p-2 w-9/12" type="text" />
-          <button onClick={getData} className="ml-4 px-4 backdrop-blur-sm text-slate-700 hover:cursor-pointer font-bold bg-white/30 rounded-md p-2 w-1/7 hover:bg-slate-700 hover:text-white">
+          <input onChange={searchChange} className="p-2 w-9/12 text-slate-800" type="text" />
+          <button onClick={getData} className="ml-4 px-4 backdrop-blur-sm text-white hover:cursor-pointer font-bold bg-white/10 rounded-md p-2 w-1/7 hover:bg-white hover:text-blue-900 hover:scale-105 ease-in-out duration-300">
             Search
           </button>
         </div>
         <div className="nav flex justify-start items-center w-7/12">
           <Menu as="div" className="relative text-left">
             <div>
-              <Menu.Button className="px-5 py-2 inline-flex backdrop-blur-sm w-full text-slate-700 hover:cursor-pointer font-bold bg-white/30 rounded-md hover:bg-slate-700 hover:text-white">
+              <Menu.Button className="px-5 py-2 inline-flex backdrop-blur-sm w-full text-white hover:cursor-pointer font-bold bg-white/10 rounded-md hover:bg-white hover:text-blue-900 hover:scale-105 duration-300">
                 Filter
                 <ChevronDownIcon
-                  className="ml-2 h-5 w-5 text-gray-400"
+                  className="ml-2 h-5 w-5"
                   aria-hidden="true"
                 />
               </Menu.Button>
@@ -175,7 +175,7 @@ const UserHomePage = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="p-1 absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="p-1 absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-slate-800 focus:outline-none">
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
@@ -359,14 +359,14 @@ const UserHomePage = () => {
         </div>
       </div>
       {values && (
-        <div className="w-full h-4/5 p-5 pt-2 flex justify-center items-center">
-          <div className=" w-11/12 h-full p-10 bg-white/30 rounded-md overflow-y-scroll grid grid-cols-5 gap-10">
+        <div className="w-full h-3/4 p-5 pt-2 flex justify-center items-center">
+          <div className=" w-11/12 h-full p-10 bg-white/10 rounded-md overflow-y-scroll grid grid-cols-5 gap-10">
             {values.map((element, index) => {
               return (
                 <div
                   onClick={()=>navigate('/user/viewPage',{state:{isbn:element.isbn,rate:false}})}
                   key={index}
-                  className="w-full h-64 p-5 bg-white/30 rounded-md group parent hover:scale-110 ease-in-out duration-100 hover:cursor-pointer"
+                  className="w-full h-64 p-5 bg-white/10 rounded-md group parent hover:scale-110 ease-in-out duration-100 hover:cursor-pointer"
                 >
                   <img
                     className="w-full max-h-full min-h-full hover:scale-110 duration-100 ease-in-out"

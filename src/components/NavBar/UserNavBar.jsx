@@ -21,7 +21,7 @@ const UserNavBar = ({ home, readList, ratings }) => {
   };
 
   return (
-    <div className="w-screen flex py-2 backdrop-blur-lg justify-between rounded-md">
+    <div className="w-screen flex py-2 backdrop-blur-lg justify-between rounded-md mb-10">
       <div className="logo w-8/12 flex items-center">
         <div
           className="p-2 px-4 pl-10 hover:cursor-pointer"
@@ -31,19 +31,19 @@ const UserNavBar = ({ home, readList, ratings }) => {
             ReadEasy
           </h1>
         </div>
-        <div className="pl-10">
+        <div className="pl-10 flex">
           {home && (
-            <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user">
+            <Link className="mx-3 w-24 text-center hover:font-bold p-2 px-3 ease-in-out duration-300 hover:text-white hover:scale-105 bg-white/10 rounded-md" to="/user">
               Home
             </Link>
           )}
           {readList && (
-            <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user/readList">
+            <Link className="mx-3 w-24 text-center hover:font-bold p-2 px-3 ease-in-out duration-300 hover:text-white hover:scale-105 bg-white/10 rounded-md" to="/user/readList">
               ReadList
             </Link>
           )}
           {/* {ratings && (
-            <Link className="ml-5 hover:font-bold p-2 px-3 bg-white/30 rounded-md" to="/user/rating">
+            <Link className="mx-3 w-24 text-center hover:font-bold p-2 px-3 ease-in-out duration-300 hover:text-white hover:scale-105 bg-white/10 rounded-md" to="/user/rating">
               Your Ratings
             </Link>
           )} */}
@@ -52,7 +52,7 @@ const UserNavBar = ({ home, readList, ratings }) => {
       <div className="nav flex justify-end pr-16 items-center w-4/12">
         <Menu as="div" className="relative text-left">
           <div>
-            <Menu.Button className="px-5 py-2 inline-flex backdrop-blur-sm w-full text-slate-700 hover:cursor-pointer font-bold bg-white/30 rounded-md hover:bg-slate-700 hover:text-white">
+            <Menu.Button className="px-5 py-2 inline-flex backdrop-blur-sm w-full text-white hover:cursor-pointer font-bold bg-white/10 hover:bg-white border-2 rounded-lg border-white hover:text-blue-900 ease-in-out duration-300 hover:scale-110">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -69,7 +69,7 @@ const UserNavBar = ({ home, readList, ratings }) => {
               </svg>
 
               <ChevronDownIcon
-                className="ml-2 h-5 w-5 text-gray-400"
+                className="ml-2 h-5 w-5"
                 aria-hidden="true"
               />
             </Menu.Button>

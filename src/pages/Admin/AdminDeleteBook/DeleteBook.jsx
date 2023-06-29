@@ -38,12 +38,12 @@ const DeleteBook = () => {
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen} />}
       <NavBar home={true} add={true} view={true} update={true} del={false} />
       <div className="w-full flex justify-center items-center p-10">
-        <div className="backdrop-blur-md bg-white/30 p-10 w-11/12 rounded-md grid grid-cols-4 gap-5">
+        <div className="backdrop-blur-md w-fit p-10 mt-7 bg-white/10 grid grid-cols-4 rounded-md">
           <div className="col-span-1">
             <img src={payload.coverArtUrl} className="h-96 max-h-96" />
           </div>
           <div className="col-span-3">
-            <div className="w-full p-5 bg-white/50 h-full">
+            <div className="w-full p-5 bg-white/10 h-full">
               <h1 className="text-2xl mb-6 font-extrabold">{payload.title}</h1>
               {payload.isbn && (
                 <h3 className="font-bold">
@@ -109,7 +109,7 @@ const DeleteBook = () => {
               <div className="w-full h-2/6 p-5 flex justify-end items-end">
                 <button
                   onClick={deleteBook}
-                  className="p-2 mb-3 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold bg-white/30 rounded-md w-2/12 hover:bg-slate-700 hover:text-white"
+                  className="p-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold bg-white/10 rounded-md w-2/12 hover:bg-white hover:text-blue-900 hover:scale-110 ease-in-out duration-300"
                 >
                   Delete
                 </button>

@@ -24,16 +24,16 @@ const Review = ({ isbn, rev }) => {
         {reviews &&
           reviews.map((element, index) => {
             return (
-              <div key={index} className="py-2">
-                <div className="border-2 mr-3 rounded-lg backdrop:blur-lg bg-white/30 border-slate-700/30 p-5 flex flex-col">
-                  <div className="flex">
+              <div key={index} className="py-2 text-white">
+                <div className="border-2 mr-3 rounded-lg backdrop:blur-lg bg-blue-900/70 border-blue-500/30 p-5 flex flex-col">
+                  <div className="flex items-center font-extrabold">
                     <h1 className="pr-2">From:</h1>
                     {element.username}
                   </div>
-                  <div className="border-2 rounded-lg p-2 border-slate-700/30 my-2">
+                  <div className="border-2 rounded-lg p-2 border-blue-500/30 my-2">
                     {element.review}
                   </div>
-                  <div className="flex">
+                  <div className="flex items-center font-extrabold">
                     <svg
                       className="text-yellow-500 w-5 h-auto ml-3 mr-1 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ const Review = ({ isbn, rev }) => {
       </div>
       <div className="w-full flex justify-end px-5 items-center">
         <button
-          className="flex justify-center bg-white/30 bg-blend-multiply py-1 px-3 rounded-lg font-black items-center"
+          className="flex justify-center bg-white/10 hover:scale-105 ease-in-out duration-300 bg-blend-multiply py-1 px-3 rounded-lg font-black items-center"
           onClick={() => rev(false)}
         >
           <svg
@@ -59,7 +59,7 @@ const Review = ({ isbn, rev }) => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6 mr-3 text-slate-950 "
+            className="w-6 h-6 mr-3 "
           >
             <path
               strokeLinecap="round"

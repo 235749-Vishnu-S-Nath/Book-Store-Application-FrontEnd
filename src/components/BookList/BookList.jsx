@@ -7,7 +7,7 @@ const BookList = ({v,add,view,update,del}) => {
 
     const goToView=(element)=>{
         const payload = element
-        navigate('/admin/viewPage',{state:{payload,cancel:true,add:false,update:true,del:true,addToRL:false,rate:false}})
+        navigate('/admin/viewPage',{state:{payload,cancel:true,add:false,update:true,del:true}})
     }
 
     const goToUpdate=(element)=>{
@@ -27,7 +27,7 @@ const BookList = ({v,add,view,update,del}) => {
   return v.map((element, index) => {
     return (
       <div
-        className="flex flex-row justify-between items-center border-2 border-slate-400/60 py-3 pl-3 m-2 bg-white/70"
+        className="flex flex-row justify-between items-center border-2 border-white/50 py-3 pl-3 m-2 bg-white/10"
         key={index}
       >
         <div className="h-36 w-3/4 flex items-center justify-evenly">
@@ -85,7 +85,7 @@ const BookList = ({v,add,view,update,del}) => {
           {view && (
             <button
               onClick={() => goToView(element)}
-              className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+              className="w-1/2 m-2 p-2 mx-2 border-white border-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold rounded-md hover:bg-white hover:text-blue-900 hover:scale-105 ease-in-out duration-300 flex justify-evenly items-center"
             >
               View
             </button>
@@ -93,7 +93,7 @@ const BookList = ({v,add,view,update,del}) => {
           {update && (
             <button
               onClick={() => goToUpdate(element)}
-              className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+              className="w-1/2 m-2 p-2 mx-2 border-white border-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold rounded-md hover:bg-white hover:text-blue-900 hover:scale-105 ease-in-out duration-300 flex justify-evenly items-center"
             >
               Update
             </button>
@@ -101,7 +101,7 @@ const BookList = ({v,add,view,update,del}) => {
           {del && (
             <button
               onClick={() => goToDelete(element)}
-              className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+              className="w-1/2 m-2 p-2 mx-2 border-white border-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold rounded-md hover:bg-white hover:text-blue-900 hover:scale-105 ease-in-out duration-300 flex justify-evenly items-center"
             >
               Delete
             </button>
@@ -109,7 +109,7 @@ const BookList = ({v,add,view,update,del}) => {
           {add && (
             <button
               onClick={() => saveBook(element)}
-              className="w-1/2 p-2 m2 mx-2 border-2 border-slate-700 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+              className="w-1/2 p-2 m2 mx-2 border-2 border-white backdrop-blur-sm hover:cursor-pointer text-white font-bold rounded-md hover:bg-white hover:text-blue-900 hover:scale-105 ease-in-out duration-300 flex justify-evenly items-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

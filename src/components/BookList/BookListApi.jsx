@@ -72,16 +72,16 @@ const BookListApi = ({ v, add, view}) => {
 
   const goToView=(element)=>{
     const payload = getPayload(element)
-    navigate('/admin/viewPage',{state:{payload,cancel:true,add:true,update:false,del:false,addToRL:false,rate:false}})
+    navigate('/admin/viewPage',{state:{payload,cancel:true,add:true,update:false,del:false}})
   }
 
   return v.map((element, index) => {
     return (
       <div
-        className="flex flex-row justify-between items-center border-2 border-slate-400/60 py-3 pl-3 m-2 bg-white/70"
+        className="flex flex-row max-h-48 overflow-hidden justify-between items-center border-2 border-white/50 py-3 pl-3 m-3 my-5 bg-white/10"
         key={index}
       >
-        <div className="h-36 w-3/4 flex items-center justify-evenly">
+        <div className="h-32 overflow-hidden w-3/4 flex items-center justify-evenly">
           <div className="w-1/4">
             <img
               src={element.published_works[0].cover_art_url}
@@ -89,23 +89,23 @@ const BookListApi = ({ v, add, view}) => {
             />
           </div>
           <div className="ml-4 h-full w-full rounded-md px-5 py-1 font-extrabold">
-            <h1>{element.title}</h1>
-          {element.series_name&&<h3 className="text-sm font-bold flex">Series: <span><p className="text-xs p-0.5 ml-1 font-light">{element.series_name}</p></span></h3>}
-          {element.authors[0]&&<h3 className="text-sm font-bold flex">Author: <span><p className="text-xs p-0.5 ml-1 font-light">{element.authors[0]}</p></span></h3>}
-          {element.min_age&&element.max_age&&<h3 className="text-sm font-bold flex">Suggest age: <span><p className="text-xs p-0.5 ml-1 font-light">{element.min_age}-{element.max_age}</p></span></h3>}
-          {element.categories&&<h3 className="text-sm font-bold flex">Categories: <span><p className="text-xs p-0.5 ml-1 font-light">{element.categories}</p></span></h3>}
+            <h1 className="mb-3 text-white">{element.title}</h1>
+          {element.series_name&&<h3 className="text-sm text-white font-bold flex">Series: <span><p className="text-xs p-0.5 ml-1 font-light">{element.series_name}</p></span></h3>}
+          {element.authors[0]&&<h3 className="text-sm text-white font-bold flex">Author: <span><p className="text-xs p-0.5 ml-1 font-light">{element.authors[0]}</p></span></h3>}
+          {element.min_age&&element.max_age&&<h3 className="text-sm text-white font-bold flex">Suggest age: <span><p className="text-xs p-0.5 ml-1 font-light">{element.min_age}-{element.max_age}</p></span></h3>}
+          {element.categories&&<h3 className="text-sm text-white font-bold flex">Categories: <span><p className="text-xs p-0.5 ml-1 font-light">{element.categories}</p></span></h3>}
           </div>
         </div>
         <div className="w-1/4 p-2 flex flex-col items-center justify-evenly">
           {view && (
-            <button onClick={()=>goToView(element)} className="w-1/2 m-2 p-2 mx-2 border-slate-700 border-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center">
+            <button onClick={()=>goToView(element)} className="w-1/2 m-2 p-2 mx-2 border-white border-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold rounded-md hover:bg-white hover:text-blue-900 ease-in-out duration-300 hover:scale-105 flex justify-evenly items-center">
               View
             </button>
           )}
           {add && (
             <button
               onClick={() => saveBook(element)}
-              className="w-1/2 p-2 m2 mx-2 border-2 border-slate-700 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold rounded-md hover:bg-slate-700 hover:text-white flex justify-evenly items-center"
+              className="w-1/2 p-2 m2 mx-2 border-2 border-white backdrop-blur-sm hover:cursor-pointer text-white font-bold rounded-md hover:bg-white hover:text-blue-900 ease-in-out duration-300 hover:scale-105 flex justify-evenly items-center"
             >
               Add
             </button>

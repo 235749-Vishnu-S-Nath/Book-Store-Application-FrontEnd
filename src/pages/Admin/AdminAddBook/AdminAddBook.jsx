@@ -147,8 +147,8 @@ const AdminAddBook = () => {
       {isOpen&&<PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
       {isLoading&&<Loading/>}
       <NavBar home={true} add={false} view={true} update={true} del={true} />
-      <div className="w-full flex h-4/5 p-4 px-5">
-        <div className="w-1/2 mt-5 ml-4 h-fit rounded-md bg-white/30 p-10 flex flex-col">
+      <div className="w-full flex justify-center items-center h-4/5 p-4 px-5">
+        <div className="w-1/2 mt-5 ml-4 h-fit rounded-md bg-white/10 p-10 flex flex-col">
           <div className="mb-5">
             <input
               type="text"
@@ -194,7 +194,7 @@ const AdminAddBook = () => {
             </select>
           </div>
           <div className="mb-5">
-            <div className="grid grid-cols-2 gap-4 bg-black/30 p-5 rounded-md">
+            <div className="grid grid-cols-2 gap-4 bg-black/10 p-5 rounded-md">
               <div>
                 <div>
                   <input
@@ -329,13 +329,13 @@ const AdminAddBook = () => {
           </div>
           <button
             onClick={CategoryData}
-            className="p-2 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold bg-white/30 rounded-md w-full hover:bg-slate-700 hover:text-white"
+            className="p-2 backdrop-blur-sm hover:cursor-pointer text-white font-bold bg-white/10 rounded-md w-full hover:bg-white hover:text-blue-900 ease-in-out duration-300 hover:scale-105"
           >
             Search
           </button>
         </div>
-        <div className="w-full mt-5 max-h-full flex justify-center items-center">
-          <div className="w-5/6 h-full rounded-md bg-white/30 scroll-smooth overflow-y-scroll p-3">
+        <div className="w-full mt-5 h-full flex justify-center items-center">
+          <div className="w-5/6 h-full rounded-md bg-white/10 scroll-smooth overflow-y-scroll p-3">
             {value && <BookListApi v={value} add={true} view={true}/>}
           </div>
         </div>

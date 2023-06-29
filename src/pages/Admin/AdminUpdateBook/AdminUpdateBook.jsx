@@ -63,7 +63,7 @@ const AdminUpdateBook = () => {
           <input className="p-2 w-1/2" onChange={saveInput} type="text" />
           <button
             onClick={getData}
-            className="p-2 ml-3 backdrop-blur-sm hover:cursor-pointer text-slate-700 font-bold bg-white/30 rounded-md w-1/12 hover:bg-slate-700 hover:text-white"
+            className="p-2 ml-3 backdrop-blur-sm hover:cursor-pointer text-white font-bold ease-in-out duration-300 bg-white/10 rounded-md w-1/12 hover:bg-white hover:text-blue-900"
           >
             Search
           </button>

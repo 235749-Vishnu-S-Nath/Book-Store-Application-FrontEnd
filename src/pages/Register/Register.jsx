@@ -74,7 +74,7 @@ const Register = () => {
         <MainNavBar login={true} register={false} home={true}/>
         <div className="w-full h-4/5 flex justify-center items-center flex-col">
         <h1 className='font-extrabold text-right text-5xl p-3 w-3/5'>Register</h1>
-            <div className="rounded-md backdrop-blur-md p-5 py-10 bg-white/30 w-3/5 flex items-center justify-center flex-col">
+            <div className="rounded-md backdrop-blur-md p-5 py-10 bg-white/10 w-3/5 flex items-center justify-center flex-col">
                 <div className="mb-4 w-4/5">
                     <input className='w-full p-3 px-5 text-black rounded-md' type="text" id="rUsername" name="username" value={formState.rUsername} onChange={onUpdate} placeholder="Please Provide your Username"/>
                 </div>
@@ -86,7 +86,7 @@ const Register = () => {
                 </div>
                 <div className="w-4/5">
                     <input className='w-full p-3 px-5 text-black rounded-md' type="password" id="rCPassword" name="cPassword" value={formState.rCPassword} onChange={onUpdate} placeholder="Confirm your Password" aria-describedby='helpPass'/>
-                    {checkPass&&<div className='text-red-700 font-extrabold py-3 text-right w-3/4 text-sm absolute' id="helpPass">Password MissMatch</div>}
+                    {checkPass&&<div className='text-red-100 font-extrabold py-3 text-right w-3/4 text-sm absolute' id="helpPass">Password MissMatch</div>}
                 </div>
             </div>
                 <div className='flex -mt-3 w-3/5 z-10 px-12 justify-start'>

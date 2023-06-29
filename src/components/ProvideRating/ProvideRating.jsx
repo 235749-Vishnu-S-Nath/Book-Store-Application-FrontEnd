@@ -69,9 +69,9 @@ const ProvideRating = ({ setIsRatingOpen, book, update }) => {
   };
 
   return (
-    <div className="absolute z-10 top-0 left-0 w-screen h-screen backdrop-blur-md bg-white/30 flex justify-center items-center">
-      <div className="w-3/4 h-2/3 flex justify-center flex-col items-center border-2 border-slate-700 rounded-lg p-10 bg-slate-700">
-        <h1 className="mb-10 text-3xl font-bold text-white">{book.title}</h1>
+    <div className="absolute z-10 top-0 left-0 w-screen h-screen backdrop-blur-md bg-white/10 flex justify-center items-center">
+      <div className="w-3/6 h-2/4 flex justify-center flex-col items-center border-2 border-white rounded-lg p-10 bg-blue-900/50">
+        <h1 className="mb-10 text-3xl font-bold text-white text-center">{book.title}</h1>
         <div className="w-full starRating flex justify-center items-center">
           {[1, 2, 3, 4, 5].map((ratingValue) => (
             <button
@@ -81,27 +81,27 @@ const ProvideRating = ({ setIsRatingOpen, book, update }) => {
             >
               <FontAwesomeIcon
                 icon={faStar}
-                className="w-full h-full relative z-10"
+                className="w-full h-full relative z-10 hover:scale-125 duration-200"
               />
             </button>
           ))}
         </div>
         <div className="w-full h-60 p-5 ">
           <textarea
-            className="w-full h-full rounded-md p-2"
+            className="w-full h-full rounded-md text-slate-800 p-2"
             onChange={saveReview}
           ></textarea>
         </div>
         <div className="w-full flex justify-between">
           <button
             onClick={() => setIsRatingOpen(false)}
-            className="mx-3 text-white font-bold hover:bg-white hover:text-slate-700 px-5 py-1 border-white border-2 rounded-md mb-2"
+            className="mx-3 text-white font-bold hover:scale-105 duration-200 hover:bg-white hover:text-slate-700 px-5 py-1 border-white border-2 rounded-md mb-2"
           >
             Cancel
           </button>
           <button
             onClick={ratingFn}
-            className="mx-3 text-white font-bold hover:bg-white hover:text-slate-700 px-5 py-1 border-white border-2 rounded-md mb-2"
+            className="mx-3 text-white font-bold hover:scale-105 duration-200 hover:bg-white hover:text-slate-700 px-5 py-1 border-white border-2 rounded-md mb-2"
           >
             Rate
           </button>

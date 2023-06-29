@@ -12,7 +12,7 @@ const ViewBook = () => {
 
   const {isOpen,message,setIsOpen,setMessage} = React.useContext(IsOpenContext)
   
-  const { payload, cancel, add, update, del, addToRL, rate } = location.state;
+  const { payload, cancel, add, update, del } = location.state;
 
 
   const addFunction = () => {
@@ -61,12 +61,12 @@ const ViewBook = () => {
       {isOpen&&<PopUp message={message} setIsOpen={setIsOpen}></PopUp>}
       <NavBar home={true} add={true} view={false} update={true} del={true}/>
       <div className="w-full flex justify-center items-center p-10">
-        <div className="backdrop-blur-md w-fit p-10 mt-7 bg-white/30 grid grid-cols-4 rounded-md">
+        <div className="backdrop-blur-md w-fit p-10 mt-7 bg-white/10 grid grid-cols-4 rounded-md">
           <div className="flex justify-start w-full col-span-1 items-center">
             <img src={payload.coverArtUrl} className="h-96 max-h-96" />
           </div>
-          <div className="p-10 col-span-3 pb-1 max-h-full min-h-full w-full bg-white/70">
-            <div className="h-5/6 overflow-y-scroll content-scroll">
+          <div className="p-10 col-span-3 pb-1 max-h-full min-h-full w-full bg-white/10">
+            <div className="h-5/6 max-h-80 overflow-y-scroll">
               <h1 className="text-2xl mb-6 font-extrabold">{payload.title}</h1>
               {payload.seriesName && (
                 <h3 className="font-bold">
@@ -101,9 +101,9 @@ const ViewBook = () => {
                 </h3>
               )}
               {payload.summary && (
-                <h3 className="mt-4 font-bold">
+                <h3 className="mt-4 h-4/5 font-bold">
                   Summary:{" "}
-                  <span className="ml-3 font-light">{payload.summary}</span>
+                  <span className="ml -3 font-light">{payload.summary}</span>
                 </h3>
               )}
             </div>
@@ -111,7 +111,7 @@ const ViewBook = () => {
               {add && (
                 <button
                   onClick={addFunction}
-                  className="mx-3 text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
+                  className="mx-3 hover:scale-105 ease-in-out duration-300 text-white font-bold hover:bg-white hover:text-blue-800 px-5 py-1 border-white border-2 rounded-md mb-2"
                 >
                   Add
                 </button>
@@ -119,7 +119,7 @@ const ViewBook = () => {
               {update && (
                 <button
                   onClick={updateFunction}
-                  className="mx-3 text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
+                  className="mx-3 hover:scale-105 ease-in-out duration-300 text-white font-bold hover:bg-white hover:text-blue-800 px-5 py-1 border-white border-2 rounded-md mb-2"
                 >
                   Update
                 </button>
@@ -127,31 +127,15 @@ const ViewBook = () => {
               {del && (
                 <button
                   onClick={delFunction}
-                  className="mx-3 text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
+                  className="mx-3 hover:scale-105 ease-in-out duration-300 text-white font-bold hover:bg-white hover:text-blue-800 px-5 py-1 border-white border-2 rounded-md mb-2"
                 >
                   Delete
-                </button>
-              )}
-              {addToRL && (
-                <button
-                  onClick={addToRLFunction}
-                  className="mx-3 text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
-                >
-                  Add to List
-                </button>
-              )}
-              {rate && (
-                <button
-                  onClick={rateFunction}
-                  className="mx-3 text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
-                >
-                  Rate
                 </button>
               )}
               {cancel && (
                 <button
                   onClick={cancelFunction}
-                  className="mx-3 text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
+                  className="mx-3 hover:scale-105 ease-in-out duration-300 text-white font-bold hover:bg-white hover:text-blue-800 px-5 py-1 border-white border-2 rounded-md mb-2"
                 >
                   Cancel
                 </button>

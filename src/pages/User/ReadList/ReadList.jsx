@@ -69,40 +69,40 @@ const ReadList = () => {
   };
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen overflow-hidden">
       {isLoading && <Loading />}
       {isOpen && <PopUp message={message} setIsOpen={setIsOpen} />}
       <UserNavBar home={true} readList={false} ratings={true} />
       {readList.length && (
-        <div className="w-full mt-4 flex justify-center items-center">
-          <div className="w-11/12 bg-white/30 p-5 rounded-md">
-            <div className="text-4xl font-extrabold p-2 mb-14 rounded-md px-5 text-slate-600">
+        <div className="w-full mt-4 h-5/6 flex justify-center items-center">
+          <div className="w-11/12 bg-white/10 p-5 rounded-md">
+            <div className="text-4xl font-extrabold p-2 mb-8 rounded-md px-5">
               <h1>{localStorage.getItem("username")}'s Collection</h1>
             </div>
-            <div className="h-10 w-fit font-extrabold text-slate-700 bg-white/50 rounded-md mb-3 p-2 px-5">
+            <div className="h-10 w-fit font-extrabold bg-white/10 rounded-md mb-3 p-2 mx-5 px-5">
               <h1>
                 Total No: Books in your Collection:{" "}
                 <span>{readList.length}</span>
               </h1>
             </div>
-            <div className="w-full h-96 bg-white/50 p-5 overflow-y-scroll">
+            <div className="w-full h-96 p-5 overflow-y-scroll">
               {readList.map((element, index) => {
                 return (
                   <div
                     key={index}
-                    className="w-full mb-4 flex flex-row p-2 border-2 border-slate-700 rounded-md b justify-between items-center"
+                    className="w-full mb-4 flex bg-blue-700/40 flex-row p-2 border-2 border-white rounded-md b justify-between items-center"
                   >
                     <img className="h-auto w-24" src={element.coverArtUrl} />
-                    <h1 className="font-bold text-xl text-slate-600">
+                    <h1 className="font-bold text-xl">
                       {element.title}
                     </h1>
                     <div className="flex flex-col mx-16">
-                      <button onClick={()=>viewBook(element.isbn)} className="text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2">
+                      <button onClick={()=>viewBook(element.isbn)} className="font-bold hover:bg-white hover:scale-105 ease-in-out duration-300 hover:text-blue-900 px-5 py-1 border-white border-2 rounded-md mb-2">
                         View
                       </button>
                       <button
                         onClick={() => deleteFromList(element.isbn)}
-                        className="text-slate-800 font-bold hover:bg-slate-700 hover:text-white px-5 py-1 border-slate-700 border-2 rounded-md mb-2"
+                        className="font-bold hover:bg-white hover:scale-105 ease-in-out duration-300 hover:text-blue-900 px-5 py-1 border-white border-2 rounded-md mb-2"
                       >
                         Remove
                       </button>

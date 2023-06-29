@@ -77,9 +77,9 @@ function LoginPage() {
       <MainNavBar login={false} register={true} home={true} />
       <div className="w-full h-3/4 flex justify-center items-center flex-col">
         <h1 className="font-extrabold text-5xl p-3 w-3/5">Login</h1>
-        <div className="rounded-md backdrop-blur-md p-5 bg-white/30 w-3/5">
+        <div className="rounded-md backdrop-blur-md p-5 bg-white/10 w-3/5">
           <div className="w-full h-full p-6 flex items-center justify-center flex-col">
-            <div className="mb-4 w-4/5">
+            <div className="mb-4 w-4/5 sm:w-full">
               <input
                 type="text"
                 className="w-full p-3 px-5 text-black rounded-md"
@@ -90,7 +90,7 @@ function LoginPage() {
                 placeholder="Username"
               />
             </div>
-            <div className="w-4/5">
+            <div className="w-4/5 sm:w-full">
               <input
                 type="password"
                 className="w-full p-3 px-5 text-black rounded-md"
