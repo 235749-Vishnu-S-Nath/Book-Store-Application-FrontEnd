@@ -90,7 +90,7 @@ const Register = () => {
                 </div>
             </div>
                 <div className='flex -mt-3 w-3/5 z-10 px-12 justify-start'>
-                    <input className="rounded-md mr-5 p-3 shadow-md border-2 border-white hover:cursor-pointer shadow-black/30 px-6 hover:bg-slate-700 hover:text-white font-bold hover:scale-105 bg-white text-slate-700" type='submit' onClick={checkPassword} value='Register'/>
+                    <input className="rounded-md mr-5 p-3 shadow-md border-2 border-white hover:cursor-pointer shadow-black/30 px-6 hover:bg-blue-800 hover:text-white font-bold bg-white text-blue-800 ease-in-out duration-300 hover:scale-110" type='submit' onClick={checkPassword} value='Register'/>
                 </div>
         </div>
     </div>

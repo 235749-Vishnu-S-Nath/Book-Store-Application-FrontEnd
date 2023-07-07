@@ -40,6 +40,7 @@ function LoginPage() {
           localStorage.setItem("email", response.data.email);
           localStorage.setItem("isActive", true);
           localStorage.setItem("role", response.data.role);
+          localStorage.setItem("token", response.data.token);
         }
       })
       .catch((error) => {
@@ -53,7 +54,7 @@ function LoginPage() {
   };
 
   const reroute = () => {
-    userState === "ADMIN" ? navigation("/admin") : navigation("/user");
+    userState === "ROLE_ADMIN" ? navigation("/admin") : navigation("/user");
   };
 
   const checkLogin = () => {
@@ -117,7 +118,7 @@ function LoginPage() {
           </div>
           <div className="flex w-full justify-end">
             <input
-              className="rounded-md mr-5 p-3 shadow-md border-2 border-white hover:cursor-pointer shadow-black/30 px-6 hover:bg-slate-700 hover:text-white font-bold hover:scale-105 bg-white text-slate-700"
+              className="rounded-md mr-5 p-3 shadow-md border-2 border-white hover:cursor-pointer shadow-black/30 px-6 hover:bg-blue-800 hover:text-white font-bold bg-white text-blue-800 ease-in-out duration-300 hover:scale-110"
               type="button"
               onClick={onClickLogin}
               value="Login"
